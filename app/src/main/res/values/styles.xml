@@ -3,7 +3,7 @@
 
     <style name="Button_Style" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="android:gravity">center</item>
     </style>
 </resources>

@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/io_background"
         android:gravity="bottom"
         android:orientation="vertical"
         android:padding="30dp">
@@ -24,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textColor="@color/white"
             android:textSize="30sp"
             tools:text="5+10-3" />
 
@@ -33,7 +31,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:textColor="@color/green"
             android:textSize="50sp"
             tools:text="12" />
 
