@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">DentakuApp</string>
+    <string name="bottom_0">0</string>
+    <string name="bottom_1">1</string>
+    <string name="bottom_2">2</string>
+    <string name="bottom_3">3</string>
+    <string name="bottom_4">4</string>
+    <string name="bottom_5">5</string>
+    <string name="bottom_6">6</string>
+    <string name="bottom_7">7</string>
+    <string name="bottom_8">8</string>
+    <string name="bottom_9">9</string>
+    <string name="bottom_addition">+</string>
+    <string name="bottom_subtraction">-</string>
+    <string name="bottom_multiply">×</string>
+    <string name="bottom_division">÷</string>
+    <string name="bottom_clear">C</string>
+    <string name="btn_point">.</string>
+    <string name="bottom_equals">=</string>
+    <string name="bottom_bracket_left">(</string>
+    <string name="bottom_bracket_right">)</string>
 </resources>
