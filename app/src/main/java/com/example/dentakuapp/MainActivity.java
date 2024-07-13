@@ -1,16 +1,20 @@
 package com.example.dentakuapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import de.congrace.exp4j.Calculable;
+import de.congrace.exp4j.ExpressionBuilder;
+import de.congrace.exp4j.UnknownFunctionException;
+import de.congrace.exp4j.UnparsableExpressionException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -82,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener ButtonEqualsListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-
+            showResult();
         }
     };
     //計算するメソッド
@@ -94,37 +97,20 @@ public class MainActivity extends AppCompatActivity {
 
     private String getInputExpression(){
         String expression = inputText.getText().toString().replace("÷","/");
-
-        Log.d("test","expression" + expression);
+        expression = expression.replace("×","*");
         return expression;
     }
     private void showResult(){
-        getInputExpression();
-
+        String expression = getInputExpression();
+        Calculable calc = null;
+        try {
+            calc = new ExpressionBuilder(expression).build();
+            double result = calc.calculate();
+            outputText.setText(String.valueOf((int) result));
+        } catch (UnknownFunctionException e) {
+            throw new RuntimeException(e);
+        } catch (UnparsableExpressionException e) {
+            throw new RuntimeException(e);
+        }
     };
 }
-
-//package com.example.dentakuapp;
-//
-//import android.os.Bundle;
-//
-//import androidx.activity.EdgeToEdge;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.graphics.Insets;
-//import androidx.core.view.ViewCompat;
-//import androidx.core.view.WindowInsetsCompat;
-//
-//public class MainActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
-//        setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
-//    }
-//}
