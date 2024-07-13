@@ -1,6 +1,7 @@
 package com.example.dentakuapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private TextView inputText;
-
+    private TextView outputText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         inputText = findViewById(R.id.input);
-        inputText = findViewById(R.id.output);
+        outputText = findViewById(R.id.output);
 
         findViewById(R.id.bottom_clear).setOnClickListener(buttonListener);
         findViewById(R.id.bottom_bracket_left).setOnClickListener(buttonOperatorListener);
@@ -48,26 +49,58 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.bottom_addition).setOnClickListener(buttonOperatorListener);
         findViewById(R.id.bottom_0).setOnClickListener(buttonNumberListener);
         findViewById(R.id.bottom_dot).setOnClickListener(buttonOperatorListener);
-        findViewById(R.id.bottom_equals).setOnClickListener(buttonOperatorListener);
+        findViewById(R.id.bottom_equals).setOnClickListener(ButtonEqualsListener);
 
     }
     View.OnClickListener buttonNumberListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            String num = ((AppCompatButton)view).getText().toString();
+            //＋などの記号が押されていたらまたは数字が先頭が0なら0と押したボタンの数字を置き換え
+            String result = addToInputText(num);
+            inputText.setText(result);
         }
     };
     View.OnClickListener buttonOperatorListener = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
+            String operator = ((AppCompatButton)view).getText().toString();
+            //計算するメソッド呼び出し
 
+            String result = addToInputText(operator);
+            inputText.setText(result);
         }
     };
     View.OnClickListener buttonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            inputText.setText("");
+            outputText.setText("");
+        }
+    };
+
+    View.OnClickListener ButtonEqualsListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
 
         }
+    };
+    //計算するメソッド
+    private String addToInputText(String num) {
+        String inputTextStr = inputText.getText().toString();
+        return inputTextStr + num;
+    };
+
+    private String getInputExpression(){
+        String expression = inputText.getText().toString().replace("÷","/");
+
+        Log.d("test","expression" + expression);
+        return expression;
+    }
+    private void showResult(){
+        getInputExpression();
+
     };
 }
 
